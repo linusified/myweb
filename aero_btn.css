@@ -1,0 +1,93 @@
+/* Sepia Frutiger Aero Button */
+
+.aero-btn {
+  /* Scoped Variables */
+  --btn-hue: 35;
+  --btn-sat: 0.28;
+  --btn-glow-intensity: 0.5;
+
+  --btn-fg: oklch(15% calc(var(--btn-sat) * 0.5) var(--btn-hue));
+  --btn-bg: oklch(62% var(--btn-sat) var(--btn-hue) / 0.85);
+  --btn-bg-dark: oklch(38% var(--btn-sat) var(--btn-hue) / 0.80);
+  --btn-bottom-glow: radial-gradient(farthest-corner at bottom center,
+      rgba(255, 220, 160, var(--btn-glow-intensity)),
+      transparent);
+
+  /* Base */
+  background-color: var(--btn-bg);
+  background:
+    var(--btn-bottom-glow),
+    linear-gradient(to bottom, var(--btn-bg-dark), var(--btn-bg));
+  border: 1px solid oklch(55% var(--btn-sat) var(--btn-hue) / 0.6);
+  border-radius: 9999px;
+
+  /* Shadow */
+  box-shadow:
+    0 4px 4px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(196, 162, 74, 0.2),
+    inset 0 1px 0 rgba(255, 220, 150, 0.3);
+
+  /* Typography */
+  color: var(--btn-fg);
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", system-ui, sans-serif;
+  font-weight: 700;
+  text-shadow: 0 1px 0.5em rgba(255, 200, 100, 0.3);
+
+  /* Layout */
+  cursor: pointer;
+  position: relative;
+  transition: all 300ms ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Top Highlight */
+.aero-btn::after {
+  content: "";
+  position: absolute;
+  top: 4%;
+  left: 0.75em;
+  width: calc(100% - 1.5em);
+  height: 40%;
+  background: linear-gradient(to bottom,
+      rgba(255, 235, 180, 0.75),
+      rgba(255, 210, 120, 0.08));
+  border-radius: inherit;
+  transition: background 400ms ease;
+  pointer-events: none;
+}
+
+/* Hover / Focus */
+.aero-btn:hover,
+.aero-btn:focus {
+  box-shadow:
+    0 6px 8px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(196, 162, 74, 0.35),
+    inset 0 1px 0 rgba(255, 220, 150, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Active */
+.aero-btn:active {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 8px rgba(196, 162, 74, 0.2),
+    inset 0 1px 0 rgba(255, 220, 150, 0.2);
+  transform: translateY(1px);
+}
+
+/* Sizes */
+.aero-btn.small {
+  padding: 0.5em 1.5em;
+  font-size: 0.875rem;
+}
+
+.aero-btn.medium {
+  padding: 0.75em 2em;
+  font-size: 1rem;
+}
+
+.aero-btn.large {
+  padding: 1em 3em;
+  font-size: 1.125rem;
+}
